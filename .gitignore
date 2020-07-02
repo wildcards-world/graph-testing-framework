@@ -1,0 +1,6 @@
+data/
+node_modules/
+subgraph/integration-spike/generated/
+truffle-contracts/build/
+buidler/cache/
+buidler/artifacts/

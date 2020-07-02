@@ -1,0 +1,5 @@
+type SimpleStorage @entity {
+  id: ID!
+  count: BigInt!
+  _value: BigInt! # uint256
+}
