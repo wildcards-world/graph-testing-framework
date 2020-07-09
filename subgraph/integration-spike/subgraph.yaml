@@ -6,7 +6,7 @@ dataSources:
     name: Contract
     network: ganache
     source:
-      address: "0x4657FEe92bD3DFdf5660bE7b23857c2F235d4773"
+      address: "0x4657fee92bd3dfdf5660be7b23857c2f235d4773"
       abi: Contract
     mapping:
       kind: ethereum/events

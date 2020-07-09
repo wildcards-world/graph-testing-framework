@@ -1,11 +1,21 @@
 version: "3"
 services:
   ganache:
-    image: trufflesuite/ganache-cli:v6.9.1
+    image: trufflesuite/ganache-cli
     container_name: ganache
+    volumes: 
+      - ./ganache-data:/ganache-data
     ports:
       - '8545:8545'
-    entrypoint: ["node", "/app/ganache-core.docker.cli.js", "-m", "path local suggest utility axis mandate ten digital quality fee pull van"]
+    entrypoint: 
+      - "node"
+      - "/app/ganache-core.docker.cli.js"
+      - "-m"
+      - "path local suggest utility axis mandate ten digital quality fee pull van"
+      - "--db"
+      - "/ganache-data"
+      - "--time"
+      - "2020-07-25T08:24:37+00:00"
 
   graph-node:
     image: graphprotocol/graph-node

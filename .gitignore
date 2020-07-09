@@ -4,3 +4,5 @@ subgraph/integration-spike/generated/
 truffle-contracts/build/
 buidler/cache/
 buidler/artifacts/
+ganache-data/
+subgraph/integration-spike/build/
