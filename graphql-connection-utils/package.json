@@ -1,0 +1,41 @@
+{
+  "name": "skale-arweave-bridge-ui",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "re:build": "bsb -make-world",
+    "re:start": "bsb -make-world -w",
+    "re:watch": "bsb -make-world -w",
+    "re:clean": "bsb -clean-world",
+    "start": "node ./src/index.js",
+    "watch": "nodemon ./src/index.js",
+    "update-schema": "npx get-graphql-schema http://localhost:8000/subgraphs/name/wildcards/integration-spike -h 'x-hasura-admin-secret=testing' -j > graphql_schema.json"
+  },
+  "devDependencies": {
+    "@reasonml-community/graphql-ppx": "^1.0.0-beta.18",
+    "bs-let": "^0.1.16",
+    "bs-mocha": "^1.0.0",
+    "bs-platform": "^8.0.3",
+    "decco": "^1.2.1",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.0.0-rc.6",
+    "@apollo/link-ws": "^2.0.0-beta.3",
+    "@yawaramin/prometo": "^0.11.0",
+    "arweave": "^1.8.0",
+    "bs-cron": "^1.1.0",
+    "bs-express": "^1.0.1",
+    "bs-fetch": "^0.6.1",
+    "graphql": "^14.0.0",
+    "graphql-tag": "^2.10.3",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.13.1",
+    "reason-apollo-client": "^0.0.1-beta.1",
+    "reason-react": "^0.9.1",
+    "serbet": "^0.4.0",
+    "subscriptions-transport-ws": "^0.9.16"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "skale-arweave-bridge-actions",
+  "graphql": {
+    "extend-mutation": "ApolloClient.GraphQL_PPX.ExtendMutation",
+    "extend-query": "ApolloClient.GraphQL_PPX.ExtendQuery",
+    "extend-subscription": "ApolloClient.GraphQL_PPX.ExtendSubscription"
+  },
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "ppx-flags": [
+    [
+      "@reasonml-community/graphql-ppx/ppx",
+      "-template-tag=ApolloClient.GraphQL_PPX.templateTagReturnType",
+      "-template-tag-import=gql",
+      "-template-tag-location=@apollo/client"
+    ],
+    "decco/ppx",
+    "bs-let/ppx"
+  ],
+  "reason": {
+    "react-jsx": 3
+  },
+  "refmt": 3,
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "suffix": ".bs.js",
+  "bs-dependencies": [
+    "reason-apollo-client",
+    "bs-express",
+    "bs-mocha",
+    "decco",
+    "serbet",
+    "bs-fetch",
+    "bs-cron",
+    "@reasonml-community/graphql-ppx",
+    "@yawaramin/prometo",
+    // "reason-promise",
+    "reason-react" // This is needed by apollo probably... Don't use in code
+  ]
+}
