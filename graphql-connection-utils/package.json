@@ -10,6 +10,8 @@
     "re:clean": "bsb -clean-world",
     "start": "node ./src/index.js",
     "watch": "nodemon ./src/index.js",
+    "test": "mocha ./src/Test.bs.js",
+    "test2": "mocha ./src/Test2.bs.js",
     "update-schema": "npx get-graphql-schema http://localhost:8000/subgraphs/name/wildcards/integration-spike -h 'x-hasura-admin-secret=testing' -j > graphql_schema.json"
   },
   "devDependencies": {

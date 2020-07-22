@@ -16,17 +16,17 @@ module SimpleQuery = [%graphql
 |}
 ];
 
-module TimeTravelQueryHardcoded = [%graphql
-  {|
-    query BlockNumberQuery {
-        simpleStorages(block: { number: 4 }) {
-            id
-            count
-            _value
-        }
-    }
-|}
-];
+// module TimeTravelQueryHardcoded = [%graphql
+//   {|
+//     query BlockNumberQuery {
+//         simpleStorages(block: { number: 4 }) {
+//             id
+//             count
+//             _value
+//         }
+//     }
+// |}
+// ];
 
 module TimeTravelQueryParameterized = [%graphql
   {|
@@ -62,33 +62,33 @@ let exampleQuery = () =>
     )
   ->Js.Promise.catch(error => Js.Exn.raiseError(error->Obj.magic), _);
 
-let exampleTimeTravelQueryHardcoded = () => {
-  TimeTravelQueryHardcoded.(
-    Client.instance
-    ->ApolloClient.query(~query=(module TimeTravelQueryHardcoded), ())
-    ->Js.Promise.then_(
-        (
-          result:
-            ApolloClient__ApolloClient.ApolloQueryResult.t(
-              TimeTravelQueryHardcoded.t,
-            ),
-        ) =>
-          switch (result) {
-          | {data: Some(data)} =>
-            Js.Promise.resolve(
-              switch (data.simpleStorages) {
-              | [|simpleStorage|]
-              | [|simpleStorage, _|] => Some(simpleStorage)
-              | _ => None
-              },
-            )
-          | _ => Js.Exn.raiseError("Error: no people!")
-          },
-        _,
-      )
-    ->Js.Promise.catch(error => Js.Exn.raiseError(error->Obj.magic), _)
-  );
-};
+// let exampleTimeTravelQueryHardcoded = () => {
+//   TimeTravelQueryHardcoded.(
+//     Client.instance
+//     ->ApolloClient.query(~query=(module TimeTravelQueryHardcoded), ())
+//     ->Js.Promise.then_(
+//         (
+//           result:
+//             ApolloClient__ApolloClient.ApolloQueryResult.t(
+//               TimeTravelQueryHardcoded.t,
+//             ),
+//         ) =>
+//           switch (result) {
+//           | {data: Some(data)} =>
+//             Js.Promise.resolve(
+//               switch (data.simpleStorages) {
+//               | [|simpleStorage|]
+//               | [|simpleStorage, _|] => Some(simpleStorage)
+//               | _ => None
+//               },
+//             )
+//           | _ => Js.Exn.raiseError("Error: no people!")
+//           },
+//         _,
+//       )
+//     ->Js.Promise.catch(error => Js.Exn.raiseError(error->Obj.magic), _)
+//   );
+// };
 
 let exampleTimeTravelQueryParameterized = blockNumber => {
   TimeTravelQueryParameterized.(
@@ -140,22 +140,22 @@ describe("Graph Test", () => {
       )
     });
 
-    it("should be 10 at block 4", () => {
-      TimeTravelQueryHardcoded.(
-        Js.Promise.then_(
-          result =>
-            (
-              switch (result) {
-              | None => Assert.equal(true, false)
-              | Some(queryResult) =>
-                Assert.equal(queryResult._value->Obj.magic, "10")
-              }
-            )
-            ->Js.Promise.resolve,
-          exampleTimeTravelQueryHardcoded(),
-        )
-      )
-    });
+    // it("should be 10 at block 4", () => {
+    //   TimeTravelQueryHardcoded.(
+    //     Js.Promise.then_(
+    //       result =>
+    //         (
+    //           switch (result) {
+    //           | None => Assert.equal(true, false)
+    //           | Some(queryResult) =>
+    //             Assert.equal(queryResult._value->Obj.magic, "10")
+    //           }
+    //         )
+    //         ->Js.Promise.resolve,
+    //       exampleTimeTravelQueryHardcoded(),
+    //     )
+    //   )
+    // });
     it("PARAMETERIZED: should be 10 at block 4", () => {
       TimeTravelQueryParameterized.(
         Js.Promise.then_(
