@@ -16,6 +16,14 @@ module SimpleQuery = [%graphql
 |}
 ];
 
+// type StateChange @entity {
+//   id: ID! # tx
+//   timestamp: BigInt!
+//   txEventList: [String!]! #call event logs or something
+//   patronChanges: [Patron!]!
+//   wildcardChanges: [Wildcard!]!
+// }
+
 module TimeTravelQueryHardcoded = [%graphql
   {|
     query BlockNumberQuery {
