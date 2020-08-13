@@ -1,3 +1,4 @@
+/*
 open BsMocha;
 let (describe, describe_skip) = Mocha.(describe, describe_skip);
 open Promise;
@@ -182,3 +183,4 @@ describe("Graph Test", () => {
     });
   })
 });
+*/
