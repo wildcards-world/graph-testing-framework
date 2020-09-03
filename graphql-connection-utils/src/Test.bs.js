@@ -5,6 +5,7 @@ var Curry = require("bs-platform/lib/js/curry.js");
 var Client = require("./gql/Client.bs.js");
 var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
+var Belt_Option = require("bs-platform/lib/js/belt_Option.js");
 var ApolloClient = require("reason-apollo-client/src/ApolloClient.bs.js");
 var Async$BsMocha = require("bs-mocha/src/Async.bs.js");
 var Mocha$BsMocha = require("bs-mocha/src/Mocha.bs.js");
@@ -369,12 +370,12 @@ Mocha$BsMocha.describe("Graph Test")(undefined, undefined, undefined, (function 
                                       Belt_Array.map(match.stateChanges, (function (stateChange) {
                                               return Belt_Array.mapWithIndex(stateChange.txEventList, (function (index, $$event) {
                                                             console.log("event", $$event);
-                                                            var argumentsJson = JSON.parse("[\"Hello\"]");
+                                                            var argumentsJson = JSON.parse(Belt_Option.getWithDefault(Belt_Array.get(stateChange.txEventParamList, index), "THIS SHOULD NEVER HAPPEN"));
                                                             console.log("arguments", argumentsJson);
-                                                            return Curry._2(done_, undefined, undefined);
+                                                            
                                                           }));
                                             }));
-                                      return ;
+                                      return Curry._2(done_, undefined, undefined);
                                     } else {
                                       return Curry._2(done_, undefined, undefined);
                                     }

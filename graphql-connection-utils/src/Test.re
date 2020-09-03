@@ -173,14 +173,17 @@ describe("Graph Test", done_ => {
               stateChange.txEventList
               ->Array.mapWithIndex((index, event) => {
                   Js.log2("event", event);
-                  // let argumentsJson = Js.Json.parseExn(stateChange.txEventParamList[index]->Option.getWithDefault("THIS SHOULD NEVER HAPPEN"));
-                  let argumentsJson = Js.Json.parseExn("[\"Hello\"]");
+                  let argumentsJson =
+                    Js.Json.parseExn(
+                      stateChange.txEventParamList[index]
+                      ->Option.getWithDefault("THIS SHOULD NEVER HAPPEN"),
+                    );
+                  // let argumentsJson = Js.Json.parseExn("[\"Hello\"]");
                   Js.log2("arguments", argumentsJson);
-
-          done_();
                 })
             })
           ->ignore;
+          done_();
 
         | None => done_()
         }
