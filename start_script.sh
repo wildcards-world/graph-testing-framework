@@ -20,6 +20,42 @@ function killAndExit {
     exit 0
 }
 
+function graphCreate {
+    echo '####### DEPLOYING GRAPH #######'
+    cd wildcards-subgraph && yarn codegen && yarn build && yarn create-local && yarn deploy-local
+    if [ "$?" -ne 0 ];
+    then
+        echo "ERROR: Could not deploy graph successfully"
+        killAndExit
+    fi
+    cd ..
+}
+
+function graphRedeploy {
+    echo '####### REDEPLOYING GRAPH #######'
+    cd wildcards-subgraph && yarn codegen && yarn build && yarn deploy-local
+    if [ "$?" -ne 0 ];
+    then
+        echo "ERROR: Could not redeploy graph successfully"
+        # killAndExit
+    fi
+    cd ..
+}
+
+function doneLoop {
+    echo "######################"
+    echo "######## DONE ########"
+    if [ $WAIT_FOR_INPUT = true ]; then
+        echo "####### PRESS R to RESTART ######"
+        echo "# PRESS G to REDEPLOY the graph #"
+        echo "######## PRESS Q to QUIT ########"
+    fi
+    echo "######################"
+    if [ $WAIT_FOR_INPUT = true ]; then
+        waitForInput
+    fi
+}
+
 function start {
     echo "####### CLEANUP #######"
     rm -rf data ganache-data
@@ -49,40 +85,28 @@ function start {
         echo "ERROR: Could not deploy contracts successfully"
         killAndExit
     fi
-
-    echo '####### DEPLOYING GRAPH #######'
-    cd ../wildcards-subgraph && yarn codegen && yarn build && yarn create-local && yarn deploy-local
     cd ..
 
-    if [ "$?" -ne 0 ];
-    then
-        echo "ERROR: Could not deploy graph successfully"
-        killAndExit
-    fi
-    
-
-    echo "######################"
-    echo "######## DONE ########"
-    if [ $WAIT_FOR_INPUT = true ]; then
-        echo "# PRESS R to RESTART #"
-        echo "### PRESS Q to QUIT ##"
-    fi
-    echo "######################"
-    if [ $WAIT_FOR_INPUT = true ]; then
-        waitForInput
-    fi
+    graphCreate
+    doneLoop
 }
 
 function waitForInput {
     while [ true ] ; do
         read -n 1 k <&1
         if [[ $k == "q" || $k == "Q" ]]; then
+            echo ""
             killAndExit
         elif [[ $k == "r" || $k == "R" ]]; then
-            echo "######## RESTARTING ########"
+            echo ""
+            echo "######## RESTARTING ALL ########"
             killCompose
             sleep 3
             start
+        elif [[ $k == "g" || $k == "G" ]]; then
+            echo ""
+            graphRedeploy
+            doneLoop
         fi
     done
 }

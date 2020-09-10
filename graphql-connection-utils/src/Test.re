@@ -17,7 +17,7 @@ module AllStateChanges = [%graphql
         blockNumber
         contractVersion
         txEventList
-        txEventParamList
+        txEventParamListDeprecated
         patronChanges {
           id
         }
@@ -175,7 +175,7 @@ describe("Graph Test", done_ => {
                   Js.log2("event", event);
                   let argumentsJson =
                     Js.Json.parseExn(
-                      stateChange.txEventParamList[index]
+                      stateChange.txEventParamListDeprecated[index]
                       ->Option.getWithDefault("THIS SHOULD NEVER HAPPEN"),
                     );
                   // let argumentsJson = Js.Json.parseExn("[\"Hello\"]");

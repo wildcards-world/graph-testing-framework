@@ -8994,7 +8994,7 @@
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
-            "name": "txEventParamList",
+            "name": "txEventParamListDeprecated",
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -9634,7 +9634,7 @@
           {
             "defaultValue": null,
             "description": null,
-            "name": "txEventParamList",
+            "name": "txEventParamListDeprecated",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -9652,7 +9652,7 @@
           {
             "defaultValue": null,
             "description": null,
-            "name": "txEventParamList_not",
+            "name": "txEventParamListDeprecated_not",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -9670,7 +9670,7 @@
           {
             "defaultValue": null,
             "description": null,
-            "name": "txEventParamList_contains",
+            "name": "txEventParamListDeprecated_contains",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -9688,7 +9688,7 @@
           {
             "defaultValue": null,
             "description": null,
-            "name": "txEventParamList_not_contains",
+            "name": "txEventParamListDeprecated_not_contains",
             "type": {
               "kind": "LIST",
               "name": null,
@@ -9890,7 +9890,7 @@
             "deprecationReason": null,
             "description": null,
             "isDeprecated": false,
-            "name": "txEventParamList"
+            "name": "txEventParamListDeprecated"
           },
           {
             "deprecationReason": null,

@@ -24,7 +24,7 @@ var query = (require("@apollo/client").gql`
       blockNumber
       contractVersion
       txEventList
-      txEventParamList
+      txEventParamListDeprecated
       patronChanges  {
         id
       }
@@ -40,7 +40,7 @@ function parse(value) {
   return {
           stateChanges: value$1.map(function (value) {
                 var value$1 = value.txEventList;
-                var value$2 = value.txEventParamList;
+                var value$2 = value.txEventParamListDeprecated;
                 var value$3 = value.patronChanges;
                 var value$4 = value.wildcardChanges;
                 return {
@@ -51,7 +51,7 @@ function parse(value) {
                         txEventList: value$1.map(function (value) {
                               return value;
                             }),
-                        txEventParamList: value$2.map(function (value) {
+                        txEventParamListDeprecated: value$2.map(function (value) {
                               return value;
                             }),
                         patronChanges: value$3.map(function (value) {
@@ -86,8 +86,8 @@ function serialize(value) {
                       id: value$1
                     };
             });
-        var value$3 = value.txEventParamList;
-        var txEventParamList = value$3.map(function (value) {
+        var value$3 = value.txEventParamListDeprecated;
+        var txEventParamListDeprecated = value$3.map(function (value) {
               return value;
             });
         var value$4 = value.txEventList;
@@ -104,7 +104,7 @@ function serialize(value) {
                 blockNumber: value$6,
                 contractVersion: value$5,
                 txEventList: txEventList,
-                txEventParamList: txEventParamList,
+                txEventParamListDeprecated: txEventParamListDeprecated,
                 patronChanges: patronChanges,
                 wildcardChanges: wildcardChanges
               };
