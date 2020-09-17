@@ -6,12 +6,12 @@
 RPC_ENDPOINT="http://localhost:8545"
 TOTAL_WAITING_TIME=45 # seconds
 WAIT_FOR_INPUT=true
+ROOT_DIR=$(pwd)
 ######################
 
 function killCompose {
-    kill $DOCKER_COMPOSE_UP_PID
-    sleep 1
-    kill $DOCKER_COMPOSE_UP_PID
+    cd $ROOT_DIR
+    docker-compose down -v
 }
 
 function killAndExit {
@@ -22,22 +22,20 @@ function killAndExit {
 
 function graphCreate {
     echo '####### DEPLOYING GRAPH #######'
-    cd wildcards-subgraph && yarn codegen && yarn build && yarn create-local && yarn deploy-local
+    cd wildcards-subgraph && yarn codegen && yarn create-local && yarn deploy-local
     if [ "$?" -ne 0 ];
     then
-        echo "ERROR: Could not deploy graph successfully"
-        killAndExit
+        echo "ERROR: Could not deploy graph successfully - please fix graph errors and press 'g'"
     fi
     cd ..
 }
 
 function graphRedeploy {
     echo '####### REDEPLOYING GRAPH #######'
-    cd wildcards-subgraph && yarn codegen && yarn build && yarn deploy-local
+    cd wildcards-subgraph && yarn codegen && yarn deploy-local
     if [ "$?" -ne 0 ];
     then
-        echo "ERROR: Could not redeploy graph successfully"
-        # killAndExit
+        echo "ERROR: Could not redeploy graph successfully - please fix graph errors and press 'g'"
     fi
     cd ..
 }
