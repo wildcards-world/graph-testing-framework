@@ -1,3 +1,7 @@
 [submodule "contracts"]
 	path = contracts
 	url = https://github.com/wildcards-world/contracts
+
+[submodule "subgraph"]
+	path = wildcards-subgraph
+	url = https://github.com/wildcards-world/subgraph

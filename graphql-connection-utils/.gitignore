@@ -25,6 +25,5 @@ lib/bs
 .merlin
 .bsb.lock
 node_modules
-*.bs.js
 .graphql_ppx_cache/
 .env

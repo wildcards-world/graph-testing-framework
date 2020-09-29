@@ -2,7 +2,8 @@ let headers = {"x-hasura-admin-secret": "testing"};
 // let headers = {"X-Hasura-User-ID": "jason", "X-Hasura-Role": "user"};
 
 // [@bs.val] external graphqlEndpoint: string = "process.env.GRAPHQL_ENDPOINT";
-let graphqlEndpoint: string = "localhost:8000/subgraphs/name/wildcards/integration-spike";
+// let graphqlEndpoint: string = "34.65.171.221:8000/subgraphs/name/wildcards/integration-spike";
+let graphqlEndpoint: string = "localhost:8000/subgraphs/name/wild-cards/subgraph";
 
 [@bs.val] external isHttpsEnv: string = "process.env.REACT_APP_IS_HTTPS";
 let isHttps = isHttpsEnv == "true";
